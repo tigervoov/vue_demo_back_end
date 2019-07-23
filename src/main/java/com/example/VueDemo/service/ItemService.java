@@ -28,4 +28,9 @@ public class ItemService {
     }
 
 
+    public void changeStatusByID(String id,Item item) {
+        Item changeItem= itemRepository.findById(id).get();
+        changeItem.setCompleted(item.getCompleted());
+        itemRepository.saveAndFlush(changeItem);
+    }
 }

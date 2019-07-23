@@ -18,7 +18,7 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity getAllItem(){
         List<Item> allItem=itemService.getAllItem();
         return ResponseEntity.ok().body(allItem);
@@ -34,12 +34,20 @@ public class ItemController {
         itemService.deleteById(id);
         return ResponseEntity.ok().build();
     }
+    @PutMapping("/{id}")
+    public ResponseEntity changeStatus(@PathVariable String id ,@RequestBody Item item){
+        itemService.changeStatusByID(id,item);
+        return ResponseEntity.ok().build();
+    }
+
+
 //    @GetMapping(params = {"page","pageSize"})
 //    public  ResponseEntity getAll(@RequestParam int page,int pageSize){
 //        Page<ParkingLot> parkingLot= parkingLotService.findAll(page,pageSize);
 //        List<ParkingLot> parkingLotList=parkingLot.getContent();
 //        return ResponseEntity.ok().body(parkingLotList);
 //    }
+
 
 
 
